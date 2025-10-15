@@ -6,7 +6,7 @@ jest.mock("../src/store/api/homeApi.ts", () => ({
   useGetDetailQuery: jest.fn()
 }));
 
-describe('Home Screen', () => {
+describe('Home to Detail Screen', () => {
   it('Home button navigate to detail screen', () => {
     const mockData = {
       results: [{ name: 'Pikachu' }]
