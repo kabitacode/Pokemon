@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { API_ENDPOINTS, BASE_API_URL } from "../../config/api";
 import { DetailType, HomeType } from "../../types";
 
-export const fetchApi = createApi({
-    reducerPath: "FetchApi",
+export const homeApi = createApi({
+    reducerPath: "homeApi",
     baseQuery: fetchBaseQuery({ baseUrl: BASE_API_URL }),
     endpoints: (build) => ({
         getHome: build.query<HomeType, void>({
@@ -18,4 +18,4 @@ export const fetchApi = createApi({
 export const {
     useGetHomeQuery,
     useGetDetailQuery
-} = fetchApi
+} = homeApi

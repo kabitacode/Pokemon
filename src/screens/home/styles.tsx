@@ -41,16 +41,6 @@ const styles = StyleSheet.create({
         fontSize: themeFonts.title,
         color: themeColors.white,
         fontWeight: "800"
-    },
-    empty: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    imageEmpty: {
-        width: 150,
-        height: 150,
-        resizeMode: "cover"
     }
 });
 

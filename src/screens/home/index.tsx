@@ -1,17 +1,24 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
-import { useGetHomeQuery } from '../../store/api/home';
 import { HomeScreenProps } from '../../config/routes';
-import { Loading, PokemonImage } from '../../components';
+import { Empty, Loading, PokemonImage } from '../../components';
+import { useGetHomeQuery } from '../../store/api/homeApi';
 
 
 const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
-    const { data: dataPokemon, isLoading: isLoading } = useGetHomeQuery();
+    const { data: dataPokemon, isLoading: isLoading, refetch } = useGetHomeQuery();
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = async () => {
+        setRefreshing(true)
+        await refetch()
+        setRefreshing(false)
+    }
 
     if (isLoading) {
-        return <Loading/>
+        return <Loading />
     }
 
     return (
@@ -25,15 +32,15 @@ const Home: React.FC<HomeScreenProps> = ({ navigation }) => {
                 keyExtractor={(item, index) => item?.name !== undefined ? item?.name?.toString() : `${index}`}
                 renderItem={({ item, index }) => {
                     return (
-                        <TouchableOpacity style={styles.card} key={index} onPress={() => navigation.navigate('Detail', { name: item?.name })}>
+                        <TouchableOpacity testID={'button-list'} style={styles.card} key={index} onPress={() => navigation.navigate('Detail', { name: item?.name })}>
                             <PokemonImage name={item?.name} />
                             <Text style={styles.text}>{item?.name}</Text>
                         </TouchableOpacity>
                     )
                 }}
-                ListEmptyComponent={  <View style={styles.empty}>
-                        <Image source={require('../../assets/images/empty.png')} style={styles.imageEmpty}/>
-                    </View>}
+                ListEmptyComponent={<Empty />}
+                refreshing={refreshing}
+                onRefresh={onRefresh}
             />
         </SafeAreaView>
     )

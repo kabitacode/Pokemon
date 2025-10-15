@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles';
-import { useGetDetailQuery } from '../../store/api/home';
+import { useGetDetailQuery } from '../../store/api/homeApi';
 import { DetailScreenProps } from '../../config/routes';
 import { Loading } from '../../components';
 

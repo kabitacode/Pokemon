@@ -1,5 +1,5 @@
-import { fetchApi } from "./home";
+import { homeApi } from "./homeApi";
 
 export {
-    fetchApi
+    homeApi
 }
