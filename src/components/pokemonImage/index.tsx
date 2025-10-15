@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { useGetDetailQuery } from '../../store/api/home';
+import { useGetDetailQuery } from '../../store/api/homeApi';
 
 type Props = {
     name?: string;
